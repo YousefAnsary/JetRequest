@@ -10,6 +10,12 @@
 		CA2586CE251DBC4E00920513 /* JetRequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2586C4251DBC4D00920513 /* JetRequest.framework */; };
 		CA2586D3251DBC4E00920513 /* JetRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2586D2251DBC4E00920513 /* JetRequestTests.swift */; };
 		CA2586D5251DBC4E00920513 /* JetRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = CA2586C7251DBC4D00920513 /* JetRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CA2586DF251DBC6300920513 /* JetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2586DE251DBC6300920513 /* JetRequest.swift */; };
+		CA2586E1251DBE3A00920513 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2586E0251DBE3A00920513 /* Request.swift */; };
+		CA2586E3251DC74600920513 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2586E2251DC74600920513 /* RequestBuilder.swift */; };
+		CA2586E5251DD27200920513 /* Date+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2586E4251DD27200920513 /* Date+Decodable.swift */; };
+		CAA9ED63251DDA0000827335 /* ParametersEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9ED62251DDA0000827335 /* ParametersEncoding.swift */; };
+		CAA9ED65251DDA1800827335 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9ED64251DDA1800827335 /* HTTPMethod.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +35,12 @@
 		CA2586CD251DBC4E00920513 /* JetRequestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JetRequestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2586D2251DBC4E00920513 /* JetRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JetRequestTests.swift; sourceTree = "<group>"; };
 		CA2586D4251DBC4E00920513 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA2586DE251DBC6300920513 /* JetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JetRequest.swift; sourceTree = "<group>"; };
+		CA2586E0251DBE3A00920513 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		CA2586E2251DC74600920513 /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		CA2586E4251DD27200920513 /* Date+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Decodable.swift"; sourceTree = "<group>"; };
+		CAA9ED62251DDA0000827335 /* ParametersEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersEncoding.swift; sourceTree = "<group>"; };
+		CAA9ED64251DDA1800827335 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +85,12 @@
 			children = (
 				CA2586C7251DBC4D00920513 /* JetRequest.h */,
 				CA2586C8251DBC4D00920513 /* Info.plist */,
+				CA2586DE251DBC6300920513 /* JetRequest.swift */,
+				CA2586E0251DBE3A00920513 /* Request.swift */,
+				CA2586E2251DC74600920513 /* RequestBuilder.swift */,
+				CA2586E4251DD27200920513 /* Date+Decodable.swift */,
+				CAA9ED62251DDA0000827335 /* ParametersEncoding.swift */,
+				CAA9ED64251DDA1800827335 /* HTTPMethod.swift */,
 			);
 			path = JetRequest;
 			sourceTree = "<group>";
@@ -148,6 +166,7 @@
 				TargetAttributes = {
 					CA2586C3251DBC4D00920513 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					CA2586CC251DBC4E00920513 = {
 						CreatedOnToolsVersion = 10.0;
@@ -194,6 +213,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2586E3251DC74600920513 /* RequestBuilder.swift in Sources */,
+				CA2586DF251DBC6300920513 /* JetRequest.swift in Sources */,
+				CAA9ED65251DDA1800827335 /* HTTPMethod.swift in Sources */,
+				CA2586E1251DBE3A00920513 /* Request.swift in Sources */,
+				CAA9ED63251DDA0000827335 /* ParametersEncoding.swift in Sources */,
+				CA2586E5251DD27200920513 /* Date+Decodable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +366,7 @@
 		CA2586D9251DBC4E00920513 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -357,6 +383,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = yousef.JetRequest;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -365,6 +392,7 @@
 		CA2586DA251DBC4E00920513 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -389,6 +417,7 @@
 		CA2586DC251DBC4E00920513 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = JetRequestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -406,6 +435,7 @@
 		CA2586DD251DBC4E00920513 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = JetRequestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

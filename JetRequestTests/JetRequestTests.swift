@@ -11,24 +11,50 @@ import XCTest
 
 class JetRequestTests: XCTestCase {
 
+    let token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbkV4cGlyZURhdGUiOjE2MDE2MzI3MDEuMjk0NTksInVzZXJJZCI6MSwidG9rZW4iOiIiLCJ0b2tlbkNyZWF0aW9uRGF0ZSI6MTYwMTAyNzkwMS4yOTQ1OX0.P9vu24lepXo_X-kiRKbt3U-kaP6tz7fdhjAg1FSe1gc"
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        JetRequest.initSession(baseURL: "http://localhost:8080/")
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testGet() {
+        let expectation = self.expectation(description: "API Response")
+        
+        let headers = ["Authorization": token]
+        JetRequest.request(path: "contacts", httpMethod: .get).set(headers: headers).fire(onSuccess: { (res: [Contact]?, code) in
+            print(res!)
+                expectation.fulfill()
+        }, onError: { (data, err, code) in
+            XCTFail()
+        })
+        
+        waitForExpectations(timeout: 15)
+    }
+    
+    func testPost() {
+        let expectation = self.expectation(description: "API Response")
+        let params = ["email": "test@test.com", "password": "123456"]
+        JetRequest.request(path: "login", httpMethod: .post)
+                .set(bodyParams: params, encoding: .formData)
+                .fire(onSuccess: { (res: [String: Any?]?, code) in
+                    print(res!)
+                    expectation.fulfill()
+                }, onError: { (data, err, code) in
+                    XCTFail()
+                })
+        
+        waitForExpectations(timeout: 15)
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+}
 
+struct Contact: Decodable {
+    let id: Int
+    let phoneNumbers: [String]
+    let name: String
+    let emails: [String]
 }
