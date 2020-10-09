@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA1599C3252F00B7009BA4A0 /* UIImageView+JetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1599C2252F00B7009BA4A0 /* UIImageView+JetRequest.swift */; };
+		CA1599C5252F3E5F009BA4A0 /* Data+JetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1599C4252F3E5F009BA4A0 /* Data+JetRequest.swift */; };
+		CA1599C7252F4CFF009BA4A0 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1599C6252F4CFF009BA4A0 /* Image.swift */; };
+		CA1599C9252F5379009BA4A0 /* UIImage+JetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1599C8252F5379009BA4A0 /* UIImage+JetRequest.swift */; };
 		CA2586CE251DBC4E00920513 /* JetRequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2586C4251DBC4D00920513 /* JetRequest.framework */; };
 		CA2586D3251DBC4E00920513 /* JetRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2586D2251DBC4E00920513 /* JetRequestTests.swift */; };
 		CA2586D5251DBC4E00920513 /* JetRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = CA2586C7251DBC4D00920513 /* JetRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA2586DF251DBC6300920513 /* JetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2586DE251DBC6300920513 /* JetRequest.swift */; };
 		CA2586E1251DBE3A00920513 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2586E0251DBE3A00920513 /* Request.swift */; };
 		CA2586E3251DC74600920513 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2586E2251DC74600920513 /* RequestBuilder.swift */; };
-		CA2586E5251DD27200920513 /* Date+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2586E4251DD27200920513 /* Date+Decodable.swift */; };
+		CA2586E5251DD27200920513 /* Data+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2586E4251DD27200920513 /* Data+Decodable.swift */; };
 		CAA9ED63251DDA0000827335 /* ParametersEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9ED62251DDA0000827335 /* ParametersEncoding.swift */; };
 		CAA9ED65251DDA1800827335 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9ED64251DDA1800827335 /* HTTPMethod.swift */; };
 /* End PBXBuildFile section */
@@ -29,6 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA1599C2252F00B7009BA4A0 /* UIImageView+JetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+JetRequest.swift"; sourceTree = "<group>"; };
+		CA1599C4252F3E5F009BA4A0 /* Data+JetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+JetRequest.swift"; sourceTree = "<group>"; };
+		CA1599C6252F4CFF009BA4A0 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		CA1599C8252F5379009BA4A0 /* UIImage+JetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+JetRequest.swift"; sourceTree = "<group>"; };
 		CA2586C4251DBC4D00920513 /* JetRequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JetRequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2586C7251DBC4D00920513 /* JetRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JetRequest.h; sourceTree = "<group>"; };
 		CA2586C8251DBC4D00920513 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -38,7 +46,7 @@
 		CA2586DE251DBC6300920513 /* JetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JetRequest.swift; sourceTree = "<group>"; };
 		CA2586E0251DBE3A00920513 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		CA2586E2251DC74600920513 /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
-		CA2586E4251DD27200920513 /* Date+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Decodable.swift"; sourceTree = "<group>"; };
+		CA2586E4251DD27200920513 /* Data+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Decodable.swift"; sourceTree = "<group>"; };
 		CAA9ED62251DDA0000827335 /* ParametersEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersEncoding.swift; sourceTree = "<group>"; };
 		CAA9ED64251DDA1800827335 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,9 +96,13 @@
 				CA2586DE251DBC6300920513 /* JetRequest.swift */,
 				CA2586E0251DBE3A00920513 /* Request.swift */,
 				CA2586E2251DC74600920513 /* RequestBuilder.swift */,
-				CA2586E4251DD27200920513 /* Date+Decodable.swift */,
+				CA2586E4251DD27200920513 /* Data+Decodable.swift */,
 				CAA9ED62251DDA0000827335 /* ParametersEncoding.swift */,
 				CAA9ED64251DDA1800827335 /* HTTPMethod.swift */,
+				CA1599C2252F00B7009BA4A0 /* UIImageView+JetRequest.swift */,
+				CA1599C4252F3E5F009BA4A0 /* Data+JetRequest.swift */,
+				CA1599C6252F4CFF009BA4A0 /* Image.swift */,
+				CA1599C8252F5379009BA4A0 /* UIImage+JetRequest.swift */,
 			);
 			path = JetRequest;
 			sourceTree = "<group>";
@@ -214,11 +226,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA2586E3251DC74600920513 /* RequestBuilder.swift in Sources */,
+				CA1599C7252F4CFF009BA4A0 /* Image.swift in Sources */,
 				CA2586DF251DBC6300920513 /* JetRequest.swift in Sources */,
+				CA1599C3252F00B7009BA4A0 /* UIImageView+JetRequest.swift in Sources */,
 				CAA9ED65251DDA1800827335 /* HTTPMethod.swift in Sources */,
 				CA2586E1251DBE3A00920513 /* Request.swift in Sources */,
+				CA1599C5252F3E5F009BA4A0 /* Data+JetRequest.swift in Sources */,
+				CA1599C9252F5379009BA4A0 /* UIImage+JetRequest.swift in Sources */,
 				CAA9ED63251DDA0000827335 /* ParametersEncoding.swift in Sources */,
-				CA2586E5251DD27200920513 /* Date+Decodable.swift in Sources */,
+				CA2586E5251DD27200920513 /* Data+Decodable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

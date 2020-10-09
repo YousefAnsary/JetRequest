@@ -8,13 +8,13 @@
 
 import Foundation
 
-extension Data {
+public extension Data {
     
-    func decode<T: Decodable>(to: T.Type) throws -> T? {
+    public func decode<T: Decodable>(to: T.Type) throws -> T? {
         return try JSONDecoder().decode(T.self, from: self)
     }
     
-    func toDictionsay() throws -> [String: Any?]? {
+    public func toDictionsay() throws -> [String: Any?]? {
         return try JSONSerialization.jsonObject(with: self, options: []) as? [String: Any?]
     }
     

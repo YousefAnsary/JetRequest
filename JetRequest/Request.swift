@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Request {
+public class Request {
     
     private var urlRequest: URLRequest
     private let httpMethod: HTTPMethod
@@ -24,11 +24,6 @@ class Request {
         self.httpMethod = httpMethod
     }
     
-    private init<T: Decodable>(urlRequest: URLRequest, httpMethod: HTTPMethod, decodingType: T.Type) {
-        self.urlRequest = urlRequest
-        self.httpMethod = httpMethod
-    }
-    
     public func set(headers: [String: String])-> Request {self.headers = headers; return self}
     
     public func set(urlParams: [String: Any])-> Request {self.urlParams = urlParams; return self}
@@ -37,10 +32,6 @@ class Request {
         self.bodyParams = bodyParams
         self.parametersEncoding = encoding
         return self
-    }
-    
-    public func decode<T: Decodable>(to type: T.Type)-> Request {
-        return Request(urlRequest: self.urlRequest, httpMethod: self.httpMethod, decodingType: type)
     }
     
     public func fire(onSuccess: @escaping (Data?, Int?)-> Void, onError: @escaping (Data?, Error?, Int?)-> Void) {

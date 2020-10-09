@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RequestBuilder {
+internal class RequestBuilder {
     
     internal static func setupQuery(forUrl url: String, params: [String: Any]?)-> URL {
         var urlComponents = URLComponents(string: url)

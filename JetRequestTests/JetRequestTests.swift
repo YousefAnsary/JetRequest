@@ -49,12 +49,13 @@ class JetRequestTests: XCTestCase {
         
         waitForExpectations(timeout: 15)
     }
+    
+    
+    struct Contact: Decodable {
+        let id: Int
+        let phoneNumbers: [String]
+        let name: String
+        let emails: [String]
+    }
 
-}
-
-struct Contact: Decodable {
-    let id: Int
-    let phoneNumbers: [String]
-    let name: String
-    let emails: [String]
 }

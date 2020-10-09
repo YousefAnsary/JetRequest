@@ -8,6 +8,6 @@
 
 import Foundation
 
-internal enum ParametersEncoding {
+public enum ParametersEncoding {
     case formData, JSON
 }
