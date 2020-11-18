@@ -10,6 +10,15 @@ import Foundation
 
 internal class RequestBuilder {
     
+    internal static func url(fromString string: String)-> URL {
+        guard let url = URL(string: string) else { fatalError("JetRequest.Error: Invalid URL: \(string)") }
+        return url
+    }
+    
+    internal static func urlRequest(fromURL url: URL)-> URLRequest {
+        return URLRequest(url: url)
+    }
+    
     internal static func setupQuery(forUrl url: String, params: [String: Any]?)-> URL {
         var urlComponents = URLComponents(string: url)
         urlComponents?.query = queryString(fromDict: params)

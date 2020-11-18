@@ -20,6 +20,12 @@
 		CA2586E5251DD27200920513 /* Data+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2586E4251DD27200920513 /* Data+Decodable.swift */; };
 		CAA9ED63251DDA0000827335 /* ParametersEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9ED62251DDA0000827335 /* ParametersEncoding.swift */; };
 		CAA9ED65251DDA1800827335 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9ED64251DDA1800827335 /* HTTPMethod.swift */; };
+		CAC3385B25658C8200038C36 /* JetRequestable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC3385A25658C8200038C36 /* JetRequestable+.swift */; };
+		CAC3385F25658CAD00038C36 /* KeyedParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC3385E25658CAD00038C36 /* KeyedParams.swift */; };
+		CAC3386325658CCC00038C36 /* RequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC3386225658CCC00038C36 /* RequestAdapter.swift */; };
+		CAD519CB254B0E43005A54EB /* JetTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD519CA254B0E43005A54EB /* JetTask.swift */; };
+		CAD519CF254B4884005A54EB /* JetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD519CE254B4884005A54EB /* JetError.swift */; };
+		CAD519D3254B49EA005A54EB /* JetRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD519D2254B49EA005A54EB /* JetRequestable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,12 @@
 		CA2586E4251DD27200920513 /* Data+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Decodable.swift"; sourceTree = "<group>"; };
 		CAA9ED62251DDA0000827335 /* ParametersEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersEncoding.swift; sourceTree = "<group>"; };
 		CAA9ED64251DDA1800827335 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		CAC3385A25658C8200038C36 /* JetRequestable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JetRequestable+.swift"; sourceTree = "<group>"; };
+		CAC3385E25658CAD00038C36 /* KeyedParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedParams.swift; sourceTree = "<group>"; };
+		CAC3386225658CCC00038C36 /* RequestAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAdapter.swift; sourceTree = "<group>"; };
+		CAD519CA254B0E43005A54EB /* JetTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JetTask.swift; sourceTree = "<group>"; };
+		CAD519CE254B4884005A54EB /* JetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JetError.swift; sourceTree = "<group>"; };
+		CAD519D2254B49EA005A54EB /* JetRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JetRequestable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +115,12 @@
 				CA1599C4252F3E5F009BA4A0 /* Data+JetRequest.swift */,
 				CA1599C6252F4CFF009BA4A0 /* Image.swift */,
 				CA1599C8252F5379009BA4A0 /* UIImage+JetRequest.swift */,
+				CAD519CA254B0E43005A54EB /* JetTask.swift */,
+				CAD519CE254B4884005A54EB /* JetError.swift */,
+				CAD519D2254B49EA005A54EB /* JetRequestable.swift */,
+				CAC3385A25658C8200038C36 /* JetRequestable+.swift */,
+				CAC3386225658CCC00038C36 /* RequestAdapter.swift */,
+				CAC3385E25658CAD00038C36 /* KeyedParams.swift */,
 			);
 			path = JetRequest;
 			sourceTree = "<group>";
@@ -227,10 +245,16 @@
 			files = (
 				CA2586E3251DC74600920513 /* RequestBuilder.swift in Sources */,
 				CA1599C7252F4CFF009BA4A0 /* Image.swift in Sources */,
+				CAD519CF254B4884005A54EB /* JetError.swift in Sources */,
 				CA2586DF251DBC6300920513 /* JetRequest.swift in Sources */,
+				CAD519CB254B0E43005A54EB /* JetTask.swift in Sources */,
 				CA1599C3252F00B7009BA4A0 /* UIImageView+JetRequest.swift in Sources */,
+				CAC3385F25658CAD00038C36 /* KeyedParams.swift in Sources */,
 				CAA9ED65251DDA1800827335 /* HTTPMethod.swift in Sources */,
+				CAC3385B25658C8200038C36 /* JetRequestable+.swift in Sources */,
+				CAC3386325658CCC00038C36 /* RequestAdapter.swift in Sources */,
 				CA2586E1251DBE3A00920513 /* Request.swift in Sources */,
+				CAD519D3254B49EA005A54EB /* JetRequestable.swift in Sources */,
 				CA1599C5252F3E5F009BA4A0 /* Data+JetRequest.swift in Sources */,
 				CA1599C9252F5379009BA4A0 /* UIImage+JetRequest.swift in Sources */,
 				CAA9ED63251DDA0000827335 /* ParametersEncoding.swift in Sources */,

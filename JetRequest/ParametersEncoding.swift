@@ -9,5 +9,5 @@
 import Foundation
 
 public enum ParametersEncoding {
-    case formData, JSON
+    case formData, JSON, defaultEncoding
 }

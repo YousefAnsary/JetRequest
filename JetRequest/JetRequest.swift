@@ -10,7 +10,7 @@ import UIKit
 
 public class JetRequest {
     
-    private static var baseURL: String!
+    private (set) public static var baseURL: String!
     private static var sessionConfiguration: URLSessionConfiguration!
     internal static var urlSession: URLSession!
     internal static let imageCache = NSCache<AnyObject, UIImage>()
@@ -23,8 +23,31 @@ public class JetRequest {
         self.urlSession = URLSession(configuration: sessionConfiguration)
     }
     
+    public static func request(requestable: JetRequestable, completion: @escaping (Data?, URLResponse?, Error?) -> Void)-> Request {
+        return Request(requestable: requestable, completion: completion)
+    }
+    
+    public static func request(requestable: JetRequestable, completion: @escaping (Result<([String: Any?]?, Int?), JetError>)-> Void)-> Request {
+        return Request(requestable: requestable, completion: completion)
+    }
+    
+    public static func request<T: Codable>(requestable: JetRequestable, completion: @escaping (Result<(T?, Int?), JetError>)-> Void)-> Request {
+        return Request(requestable: requestable, completion: completion)
+    }
+    
     public static func request(path: String, httpMethod: HTTPMethod)-> Request {
-        return Request(urlRequest: URLRequest(url: URL(string: baseURL + path)!), httpMethod: httpMethod)
+        let fullUrl = baseURL + path
+        guard let url = URL(string: fullUrl) else { fatalError("JetRequest.Error: Invalid URL: \(fullUrl)") }
+        return Request(urlRequest: URLRequest(url: url), httpMethod: httpMethod)
+    }
+    
+    public static func request(fullURL: String, httpMethod: HTTPMethod)-> Request {
+        guard let url = URL(string: fullURL) else { fatalError("JetRequest.Error: Invalid URL: \(fullURL)") }
+        return Request(urlRequest: URLRequest(url: url), httpMethod: httpMethod)
+    }
+    
+    public static func request(URL: URL, httpMethod: HTTPMethod)-> Request {
+        return Request(urlRequest: URLRequest(url: URL), httpMethod: httpMethod)
     }
     
     public static func downloadImage(url: String, completion: @escaping (UIImage?)-> Void) {
@@ -39,42 +62,22 @@ public class JetRequest {
         }// End DispatchQueue userInitiated closure
     }
     
-    public static func downloadFile(url: String,
-                                    completion: @escaping (_ progress: Progress?, _ fileTempUrl: URL?, URLResponse?, Error?)-> Void) {
-        
-        guard let urlObject = URL(string: url) else {return}
-        var timer: Timer?
-        DispatchQueue.global(qos: .userInitiated).async {
-            let task = urlSession.downloadTask(with: urlObject) { tempUrl, res, error in
-                timer?.invalidate()
-                let progress = Progress()
-                progress.totalUnitCount = 1
-                progress.completedUnitCount = 1
-                DispatchQueue.main.async { completion(progress, tempUrl, res, error) }
-            }//End data task closure
-            
-            task.resume()
-            
-            DispatchQueue.main.async{
-                timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { _ in
-                    completion(task.progress, nil, nil, nil)
-                }
-            }
-            
-        }// End DispatchQueue userInitiated closure
-        
+    public static func downloadFile(url: String, headers: [String: String]?, params: [String: Any]?)-> JetTask {
+        let urlObj = RequestBuilder.setupQuery(forUrl: url, params: params)
+        let urlRequest = RequestBuilder.setupURLRequest(url: urlObj, httpMethod: HTTPMethod.get, headers: headers)
+        return JetTask(urlRequest: urlRequest)
     }
     
-    public static func uploadImage(toUrl urlString: String, images: [Image], headers: [String: String]?, params: [String: String]?,
-                                   completion: @escaping (_ progress: Progress?, Data?, URLResponse?, Error?)-> Void) {
+    public static func uploadImage(toUrl urlString: String, images: [Image], headers: [String: String]?,
+                                   params: [String: String]?)-> JetTask {
         
-        let url = URL(string: urlString)
+        guard let url = URL(string: urlString) else {fatalError("JetRequest 51: Invalid URL: \(urlString)")}
         
         // generate boundary string using a unique per-app string
         let boundary = "Boundary-\(NSUUID().uuidString)"
         
         // Set the URLRequest to POST and to the specified URL
-        var urlRequest = URLRequest(url: url!)
+        var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = HTTPMethod.post.rawValue
         
         let lineBreak = "\r\n"
@@ -102,25 +105,7 @@ public class JetRequest {
         headers?.forEach { urlRequest.setValue($0.value, forHTTPHeaderField: $0.key) }
         urlRequest.httpBody = body
         
-        DispatchQueue.global(qos: .userInitiated).async {
-            var timer: Timer?
-            let task = urlSession?.dataTask(with: urlRequest) { data, response, error in
-                timer?.invalidate()
-                let progress = Progress()
-                progress.totalUnitCount = 1
-                progress.completedUnitCount = 1
-                DispatchQueue.main.async { completion(progress, data, response, error) }
-            }
-            
-            task?.resume()
-            
-            DispatchQueue.main.async{
-                timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { _ in
-                    completion(task?.progress, nil, nil, nil)
-                }
-            }
-            
-        }
+        return JetTask(urlRequest: urlRequest)
         
     }
     

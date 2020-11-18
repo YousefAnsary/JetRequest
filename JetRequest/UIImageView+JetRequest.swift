@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIImageView {
     
-    public func loadImage(fromUrl url: String, defaultImage: UIImage? = nil, showActivityIndicator: Bool = true,
+    func loadImage(fromUrl url: String, defaultImage: UIImage? = nil, showActivityIndicator: Bool = true,
                    activityIndicatorStyle: UIActivityIndicatorView.Style = .gray) {
         if let cacheImage = JetRequest.imageCache.object(forKey: url as AnyObject) {
             self.image = cacheImage

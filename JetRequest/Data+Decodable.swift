@@ -10,11 +10,11 @@ import Foundation
 
 public extension Data {
     
-    public func decode<T: Decodable>(to: T.Type) throws -> T? {
+    func decode<T: Decodable>(to: T.Type) throws -> T? {
         return try JSONDecoder().decode(T.self, from: self)
     }
     
-    public func toDictionsay() throws -> [String: Any?]? {
+    func toDictionsay() throws -> [String: Any?]? {
         return try JSONSerialization.jsonObject(with: self, options: []) as? [String: Any?]
     }
     

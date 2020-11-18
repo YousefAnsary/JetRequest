@@ -17,11 +17,32 @@ public class Request {
     private var bodyParams: [String: Any?]?
     private var parametersEncoding: ParametersEncoding?
     private var dataTask: URLSessionDataTask?
-    private var decodingType: Decodable.Type?
+    private var isDirect: Bool = false
     
     internal init(urlRequest: URLRequest, httpMethod: HTTPMethod) {
         self.urlRequest = urlRequest
         self.httpMethod = httpMethod
+    }
+    
+    internal init (requestable: JetRequestable, completion: @escaping (Data?, URLResponse?, Error?)-> Void) {
+        self.urlRequest = requestable.urlRequest
+        self.httpMethod = requestable.httpMethod
+        isDirect = true
+        fire(completion: completion)
+    }
+    
+    internal init (requestable: JetRequestable, completion: @escaping (Result<([String: Any?]?, Int?), JetError>)-> Void) {
+        self.urlRequest = requestable.urlRequest
+        self.httpMethod = requestable.httpMethod
+        isDirect = true
+        fire(completion: completion)
+    }
+    
+    internal init<T: Codable> (requestable: JetRequestable, completion: @escaping (Result<(T?, Int?), JetError>)-> Void) {
+        self.urlRequest = requestable.urlRequest
+        self.httpMethod = requestable.httpMethod
+        isDirect = true
+        fire(completion: completion)
     }
     
     public func set(headers: [String: String])-> Request {self.headers = headers; return self}
@@ -34,37 +55,32 @@ public class Request {
         return self
     }
     
-    public func fire(onSuccess: @escaping (Data?, Int?)-> Void, onError: @escaping (Data?, Error?, Int?)-> Void) {
-        setupURL()
+    public func fire(completion: @escaping (Data?, URLResponse?, Error?)-> Void) {
+        if !isDirect { setupURL() }
         DispatchQueue.global(qos: .userInitiated).async {
             self.dataTask = JetRequest.urlSession.dataTask(with: self.urlRequest) { data, res, error in
-                let statusCode = (res as? HTTPURLResponse)?.statusCode
-                DispatchQueue.main.async {
-                    guard 200 ... 299 ~= (statusCode ?? 0), error == nil else {
-                        onError(data, error, statusCode); return
-                    }
-                    onSuccess(data, statusCode)
-                }
+                DispatchQueue.main.async { completion(data, res, error) }
             }
             self.dataTask?.resume()
         }
     }
     
-    public func fire(onSuccess: @escaping ([String: Any?]?, Int?)-> Void, onError: @escaping (Data?, Error?, Int?)-> Void) {
-        setupURL()
+    public func fire(completion: @escaping (Result<([String: Any?]?, Int?), JetError>)-> Void) {
+        if !isDirect { setupURL() }
         DispatchQueue.global(qos: .userInitiated).async {
             self.dataTask = JetRequest.urlSession.dataTask(with: self.urlRequest) { data, res, error in
                 let statusCode = (res as? HTTPURLResponse)?.statusCode
                 DispatchQueue.main.async {
                     guard 200 ... 299 ~= (statusCode ?? 0), error == nil else {
-                        onError(data, error, statusCode); return
+                        completion(.failure(JetError(data: data, statusCode: statusCode, error: error)))
+                        return
                     }
                     do {
                         let dict = try data?.toDictionsay()
-                        onSuccess(dict, statusCode)
+                        completion(.success((dict, statusCode)))
                     } catch(let err) {
-                        onError(data, err, statusCode)
-                        print("ERROR: JetRequest/RequestClass/line79: decoding error with description: \(err.localizedDescription)")
+                        completion(.failure(JetError(data: data, statusCode: statusCode, error: error)))
+                        print("ERROR: JetRequest/RequestClass/line67: decoding error with description: \(err.localizedDescription)")
                     }
                 }
             }
@@ -72,21 +88,23 @@ public class Request {
         }
     }
     
-    public func fire<T: Decodable>(onSuccess: @escaping (T?, Int?)-> Void, onError:  @escaping (Data?, Error?, Int?)-> Void) {
-        setupURL()
+    public func fire<T: Decodable>(completion: @escaping(Result<(T?, Int?), JetError>)-> Void) {
+        if !isDirect { setupURL() }
+        
         DispatchQueue.global(qos: .userInitiated).async {
             self.dataTask = JetRequest.urlSession.dataTask(with: self.urlRequest) { data, res, error in
                 let statusCode = (res as? HTTPURLResponse)?.statusCode
                 DispatchQueue.main.async {
                     guard 200 ... 299 ~= (statusCode ?? 0), error == nil else {
-                        onError(data, error, statusCode); return
+                        completion(Result.failure(JetError(data: data, statusCode: statusCode, error: error)))
+                        return
                     }
                     do {
                         let decodedRes = try data?.decode(to: T.self)
-                        onSuccess(decodedRes, statusCode)
+                        completion(Result.success((decodedRes, statusCode)))
                     } catch(let err) {
-                        onError(data, err, statusCode)
-                        print("ERROR: JetRequest/RequestClass/line101: decoding error with description: \(err.localizedDescription)")
+                        completion(Result.failure(JetError(data: data, statusCode: statusCode, error: err)))
+                        print("ERROR: JetRequest/RequestClass/line112: decoding error with description: \(err.localizedDescription)")
                     }
                 }
             }
@@ -108,4 +126,10 @@ public class Request {
         
     }
     
+    public func cancel() {
+        dataTask?.cancel()
+    }
+    
 }
+
+
