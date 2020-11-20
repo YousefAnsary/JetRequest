@@ -48,15 +48,15 @@ extension JetRequestable {
 extension JetRequestable {
     
     public func fire(completion: @escaping (Data?, URLResponse?, Error?)-> Void) {
-        _ = JetRequest.request(requestable: self, completion: completion)
+        JetRequest.request(requestable: self, completion: completion)
     }
     
     public func fire(completion: @escaping (Result<([String: Any?]?, Int?), JetError>)-> Void) {
-        _ = JetRequest.request(requestable: self, completion: completion)
+        JetRequest.request(requestable: self, completion: completion)
     }
     
     public func fire<T: Codable>(completion: @escaping (Result<(T?, Int?), JetError>)-> Void) {
-        _ = JetRequest.request(requestable: self, completion: completion)
+        JetRequest.request(requestable: self, completion: completion)
     }
     
 }

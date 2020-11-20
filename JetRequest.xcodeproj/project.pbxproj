@@ -11,6 +11,7 @@
 		CA1599C5252F3E5F009BA4A0 /* Data+JetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1599C4252F3E5F009BA4A0 /* Data+JetRequest.swift */; };
 		CA1599C7252F4CFF009BA4A0 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1599C6252F4CFF009BA4A0 /* Image.swift */; };
 		CA1599C9252F5379009BA4A0 /* UIImage+JetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1599C8252F5379009BA4A0 /* UIImage+JetRequest.swift */; };
+		CA176E1725680F71002401D4 /* JetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA176E1625680F71002401D4 /* JetImage.swift */; };
 		CA2586CE251DBC4E00920513 /* JetRequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2586C4251DBC4D00920513 /* JetRequest.framework */; };
 		CA2586D3251DBC4E00920513 /* JetRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2586D2251DBC4E00920513 /* JetRequestTests.swift */; };
 		CA2586D5251DBC4E00920513 /* JetRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = CA2586C7251DBC4D00920513 /* JetRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,6 +44,7 @@
 		CA1599C4252F3E5F009BA4A0 /* Data+JetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+JetRequest.swift"; sourceTree = "<group>"; };
 		CA1599C6252F4CFF009BA4A0 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		CA1599C8252F5379009BA4A0 /* UIImage+JetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+JetRequest.swift"; sourceTree = "<group>"; };
+		CA176E1625680F71002401D4 /* JetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JetImage.swift; sourceTree = "<group>"; };
 		CA2586C4251DBC4D00920513 /* JetRequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JetRequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2586C7251DBC4D00920513 /* JetRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JetRequest.h; sourceTree = "<group>"; };
 		CA2586C8251DBC4D00920513 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				CAC3385A25658C8200038C36 /* JetRequestable+.swift */,
 				CAC3386225658CCC00038C36 /* RequestAdapter.swift */,
 				CAC3385E25658CAD00038C36 /* KeyedParams.swift */,
+				CA176E1625680F71002401D4 /* JetImage.swift */,
 			);
 			path = JetRequest;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 			files = (
 				CA2586E3251DC74600920513 /* RequestBuilder.swift in Sources */,
 				CA1599C7252F4CFF009BA4A0 /* Image.swift in Sources */,
+				CA176E1725680F71002401D4 /* JetImage.swift in Sources */,
 				CAD519CF254B4884005A54EB /* JetError.swift in Sources */,
 				CA2586DF251DBC6300920513 /* JetRequest.swift in Sources */,
 				CAD519CB254B0E43005A54EB /* JetTask.swift in Sources */,

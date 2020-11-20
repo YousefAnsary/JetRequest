@@ -13,7 +13,6 @@ public class JetRequest {
     private (set) public static var baseURL: String!
     private static var sessionConfiguration: URLSessionConfiguration!
     internal static var urlSession: URLSession!
-    internal static let imageCache = NSCache<AnyObject, UIImage>()
     
     private init() {}
     
@@ -23,16 +22,16 @@ public class JetRequest {
         self.urlSession = URLSession(configuration: sessionConfiguration)
     }
     
-    public static func request(requestable: JetRequestable, completion: @escaping (Data?, URLResponse?, Error?) -> Void)-> Request {
-        return Request(requestable: requestable, completion: completion)
+    public static func request(requestable: JetRequestable, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        _ = Request(requestable: requestable, completion: completion)
     }
     
-    public static func request(requestable: JetRequestable, completion: @escaping (Result<([String: Any?]?, Int?), JetError>)-> Void)-> Request {
-        return Request(requestable: requestable, completion: completion)
+    public static func request(requestable: JetRequestable, completion: @escaping (Result<([String: Any?]?, Int?), JetError>)-> Void) {
+        _ =  Request(requestable: requestable, completion: completion)
     }
     
-    public static func request<T: Codable>(requestable: JetRequestable, completion: @escaping (Result<(T?, Int?), JetError>)-> Void)-> Request {
-        return Request(requestable: requestable, completion: completion)
+    public static func request<T: Codable>(requestable: JetRequestable, completion: @escaping (Result<(T?, Int?), JetError>)-> Void) {
+        _ =  Request(requestable: requestable, completion: completion)
     }
     
     public static func request(path: String, httpMethod: HTTPMethod)-> Request {
@@ -48,18 +47,6 @@ public class JetRequest {
     
     public static func request(URL: URL, httpMethod: HTTPMethod)-> Request {
         return Request(urlRequest: URLRequest(url: URL), httpMethod: httpMethod)
-    }
-    
-    public static func downloadImage(url: String, completion: @escaping (UIImage?)-> Void) {
-        guard let urlObject = URL(string: url) else {return}
-        DispatchQueue.global(qos: .userInitiated).async {
-            urlSession.dataTask(with: urlObject) { data, res, err in
-                guard let data = data, err == nil else {print("Err Fetching data from \(url)"); return}
-                DispatchQueue.main.async {
-                    completion(UIImage(data: data))
-                }// End DispatchQueue main closure
-            }.resume() //End data task closure
-        }// End DispatchQueue userInitiated closure
     }
     
     public static func downloadFile(url: String, headers: [String: String]?, params: [String: Any]?)-> JetTask {
