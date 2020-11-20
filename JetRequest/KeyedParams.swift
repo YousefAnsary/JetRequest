@@ -8,4 +8,28 @@
 
 import Foundation
 
+
 public protocol KeyedParams {}
+
+//@dynamicMemberLookup
+//struct X {
+//    
+//    private var params: [String: Any]?
+//    
+//    subscript(dynamicMember member: String) -> Any? {
+//        get {
+//            return params?[member]
+//        } set(newValue) {
+//            params?[member] = newValue
+//        }
+//    }
+//    
+//}
+//
+//struct Y {
+//    func y() {
+//        var x = X()
+//        x.s = 0
+//        
+//    }
+//}
