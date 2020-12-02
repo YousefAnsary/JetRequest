@@ -35,7 +35,7 @@
 ### Installation
 **Cocoapod**
 
-``` pod 'JetRequest' ```
+``` pod 'JetRequest', :git => 'https://github.com/YousefAnsary/JetRequest.git' ```
 
 **Swift Package Manager**
 
