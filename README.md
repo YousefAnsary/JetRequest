@@ -8,6 +8,7 @@
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Examples](#examples)
 
 ----
 
@@ -108,3 +109,75 @@ JetRequest.initSession(baseURL: "http://www.myBaseUrl.com/api/")
 | Method  | Params  | Return Type |
 | :------------ |:---------------:|:-----:|
 | loadImage | fromUrl: String, defaultImage: UIImage? = nil,<br/> completion: ((success: Bool, isCached: Bool)-> Void)? = nil | - |
+
+----
+### Examples
+```
+var request = JetRequest.request(path: "path", httpMethod: .get) //Or
+//  var request = JetRequest.request(fullURL: "fullUrl", httpMethod: .delete) //Or
+//  var request = JetRequest.request(URL: URL(string: "URL")!, httpMethod: .post)
+        
+request = request.set(headers: ["key": "value"])
+                 .set(urlParams: ["key1": "value", "key2": 1])
+                 .set(bodyParams: ["key1": "value", "key2": 1], encoding: .formData)
+        
+request.fire { (data: Data?, res: URLResponse?, err: Error?) in }
+        
+request.fire { (res: Result<([String : Any?]?, Int?), JetError>) in
+        switch res {
+        case .success((let dict, let statusCode)):
+             print(dict)
+             print(statusCode)
+        case .failure(let err):
+             print(err)
+             // err.data (Data?)
+             // err.statusCode (Int?)
+             // err.error (Error?)
+        }
+}
+        
+request.fire { (res: Result<(MyDecodableModel?, Int?), JetError>) in
+        switch res {
+        case .success((let decodedObject, let statusCode)):
+             print(decodedObject)
+             print(statusCode)
+        case .failure(let err):
+             print(err)
+             // err.data (Data?)
+             // err.statusCode (Int?)
+             // err.error (Error?)
+        }
+}
+```
+Or Using JetRequestable Protocol
+```
+struct Request: JetRequestable {
+    var path: String = "path"
+    var headers: [String : String]? = nil
+    var httpMethod: HTTPMethod = .get
+    var parameterEncoding: ParametersEncoding = .defaultEncoding
+    
+    // Parameters
+    var param1: Int!
+    var name: String!
+    
+    // In case of parameters variable name is different from demanded key 
+    // Or you can set it to nil and do not create such a struct
+    var keysContainer: KeyedParams? = Keys()
+    struct Keys: KeyedParams {
+        let param1 = "id"
+    }   
+} // End of Request Struct
+
+let request = MyJetRequestableStruct(param1: 1, name: "")
+
+// Then fire directly
+request.fire { (data: Data?, res: URLResponse?, err: Error?) in }
+request.fire { (res: Result<([String : Any?]?, Int?), JetError>) in }
+request.fire { (res: Result<((MyDecodableModel?)?, Int?), JetError>) in }
+
+// Or Through request method 
+JetRequest.request(requestable: request, completion: { (data: Data?, res: URLResponse?, err: Error?) in })
+JetRequest.request(requestable: request, completion: { (res: Result<([String : Any?]?, Int?), JetError>) in })
+JetRequest.request(requestable: request, completion: { (res: Result<((MyDecodableModel?)?, Int?), JetError>) in })
+```
